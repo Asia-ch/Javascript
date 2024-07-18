@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 style="background-color: #212121; color: aliceblue;">
+      Value State Description 0 UNSENT Client has been created. open() not
+      called yet. 1 OPENED open() has been called. 2 HEADERS_RECEIVED send() has
+      been called, and headers and status are available. 3 LOADING Downloading;
+      responseText holds partial data. 4 DONE The operation is complete.
+    </h1>
+    
+  </body>
+  <script>
+    const requestUrl = "https://api.github.com/users/Ayesha-chaudhry";
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", requestUrl);
+    xhr.onreadystatechange = function () {
+      console.log(xhr.readyState);
+      if (xhr.readyState === 4) {
+        let data = JSON.parse(this.responseText);
+        console.log(typeof data);
+        console.log(data);
+
+        let img = document.createElement('img');
+        img.src = data.avatar_url;
+        img.alt = 'User Avatar'
+        document.body.appendChild(img);
+
+        let h1 = document.createElement('h1');
+        h1.textContent = `My name is ${data.name}`
+        document.body.appendChild(h1)
+
+        let h2 = document.createElement('h2')
+        h2.textContent = `My Login name is ${data.login}`
+        document.body.appendChild(h2)
+
+      }
+    };
+    xhr.send();
+  </script>
+</html>

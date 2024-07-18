@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Learn Events Javascript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+  </body>
+  <script>
+    let intervalId;
+
+    const setInt = (str) => {
+      console.log("Set timeInterval", Date.now(), "hi");
+    };
+
+    function startInterval() {
+      if (!intervalId) {
+        intervalId = setInterval(setInt, 2000);
+        console.log("Started");
+      }
+    }
+
+    function stopInterval() {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+        console.log("Stopped");
+      }
+    }
+
+    document.querySelector("#stop").addEventListener("click", stopInterval);
+    document.querySelector("#start").addEventListener("click", startInterval);
+  </script>
+</html>

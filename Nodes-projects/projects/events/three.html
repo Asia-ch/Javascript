@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 style="color: aliceblue; background: #777575;">Change the background Color after every one Second</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+  </body>
+  <script>
+    const randomColor = () => {
+      const hex = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += hex[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    };
+
+    let intervalId;
+
+    const startBgChange = () => {
+      if(!intervalId){
+        intervalId = setInterval(changeBgColor, 1000);
+      console.log('Started');
+      }
+
+      function changeBgColor() {
+        document.body.style.backgroundColor = randomColor();
+      }
+    };
+    const stopBgChange = () => {
+      clearInterval(intervalId);
+      intervalId = null;
+      console.log('Stopped');
+    };
+
+    document.querySelector("#start").addEventListener("click", startBgChange);
+    document.querySelector("#stop").addEventListener("click", stopBgChange);
+  </script>
+</html>
